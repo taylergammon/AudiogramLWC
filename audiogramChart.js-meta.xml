@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion> <!-- Set to your org's current API version -->
+    <isExposed>true</isExposed> <!-- Make the component visible in the App Builder -->
+    <targets>
+        <target>lightning__RecordPage</target> <!-- Allow use on Record Pages -->
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Hearing_Test__c</object> <!-- Allow the component to be used with all objects -->
+            </objects>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
