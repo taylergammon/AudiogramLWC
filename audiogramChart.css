@@ -1,0 +1,11 @@
+.audiogram-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.chart-container {
+    height: 500px;
+    width: 550px;
+}
