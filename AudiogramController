@@ -1,0 +1,46 @@
+public with sharing class AudiogramController {
+
+    @AuraEnabled(cacheable=true)
+    public static Map<String, Decimal> getAudiogramData(Id hearingTestId) {
+        // Log the received Record ID
+        System.debug('Received Record ID in Apex: ' + hearingTestId);
+
+        // Query the Hearing_Test__c record
+        Hearing_Test__c test = [
+            SELECT L_250_Hz__c, L_500_Hz__c, L_1K_Hz__c, L_2K_Hz__c, L_3K_Hz__c, L_4K_Hz__c, L_6K_Hz__c,
+                   R_250_Hz__c, R_500_Hz__c, R_1K_Hz__c, R_2K_Hz__c, R_3K_Hz__c, R_4K_Hz__c, R_6K_Hz__c
+            FROM Hearing_Test__c
+            WHERE Id = :hearingTestId
+            LIMIT 1
+        ];
+
+        // Handle case where no record is found
+        if (test == null) {
+            throw new AuraHandledException('No record found for the provided ID.');
+        }
+
+        // Create a Map to store the audiogram data
+        Map<String, Decimal> audiogramData = new Map<String, Decimal>();
+
+        // Populate the map with the queried field values
+        audiogramData.put('L_250_Hz', test.L_250_Hz__c);
+        audiogramData.put('L_500_Hz', test.L_500_Hz__c);
+        audiogramData.put('L_1K_Hz', test.L_1K_Hz__c);
+        audiogramData.put('L_2K_Hz', test.L_2K_Hz__c);
+        audiogramData.put('L_3K_Hz', test.L_3K_Hz__c);
+        audiogramData.put('L_4K_Hz', test.L_4K_Hz__c);
+        audiogramData.put('L_6K_Hz', test.L_6K_Hz__c);
+        audiogramData.put('R_250_Hz', test.R_250_Hz__c);
+        audiogramData.put('R_500_Hz', test.R_500_Hz__c);
+        audiogramData.put('R_1K_Hz', test.R_1K_Hz__c);
+        audiogramData.put('R_2K_Hz', test.R_2K_Hz__c);
+        audiogramData.put('R_3K_Hz', test.R_3K_Hz__c);
+        audiogramData.put('R_4K_Hz', test.R_4K_Hz__c);
+        audiogramData.put('R_6K_Hz', test.R_6K_Hz__c);
+
+        // Log the mapped data for debugging
+        System.debug('Mapped Audiogram Data for LWC: ' + audiogramData);
+
+        return audiogramData; // Return the map
+    }
+}
