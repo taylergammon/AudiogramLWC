@@ -1,6 +1,6 @@
-# AudiogramLWC
-An LWC that displays audiometric data on a chart typically used in hearing aid fittings. 
-Experimenting with ChatGPT and LWCs
+# AudiogramLWC - Experimenting with ChatGPT and LWCs
+
+An Lightning Web Component that displays audiometric data on a chart typically used in hearing aid fittings. 
 
 Goal:  Create an Audiogram Chart.
 
